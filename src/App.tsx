@@ -28,8 +28,10 @@ const App = () => {
 
   useEffect(()=>{
     getLocation();
-
-    getWeather();
+    if(latitude && longitude){
+      getWeather();
+    }
+    
   }, [latitude, longitude])
 
   return (
