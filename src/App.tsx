@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react';
 import './App.scss';
 import AppHeader from './components/AppHeader/AppHeader';
 import CurrentLocationData from './components/CurrentLocationData/CurrentLocationData';
+import CurrentLocationTemp from './components/CurrentLocationData/CurrentLocationTemp/CurrentLocationTemp';
 import usePosition from './utils/usePositionHook';
-import {GeoLocationAPIResponse, WeatherAPIResponse, Currently} from './utils/Interfaces'
+import {GeoLocationAPIResponse, WeatherAPIResponse, Currently, Daily} from './utils/Interfaces'
 
 import { get } from './utils/Axios';
 
@@ -17,7 +18,7 @@ const App = () => {
 
   const [currWeather, setCurrWeather] = useState({} as Currently);
 
-  const [dailyWeather, setDailyWeather] = useState({});
+  const [dailyWeather, setDailyWeather] = useState({} as Daily);
   const [hourlyWeather, setHourlyWeather] = useState({});
 
 
@@ -46,7 +47,31 @@ const App = () => {
   return (
     <div className="App">
       <AppHeader/>
-      <CurrentLocationData city={city} country={country} icon={currWeather.icon} summary={currWeather.summary} />
+
+      <div className="container">
+        <div className="row align-items-start">
+          <div className="col-6">
+            <CurrentLocationData
+              city={city}
+              country={country}
+              currentTemp={currWeather.temperature}
+              icon={currWeather.icon}
+              currSummary={currWeather.summary}
+            />
+          </div>
+          <div className="col-6">
+            <CurrentLocationTemp 
+              dailySummary={dailyWeather.data?.[0].summary}
+              currentTemp={currWeather.temperature}
+              dayTempHigh={dailyWeather.data?.[0].temperatureHigh}
+              dayTempLow={dailyWeather.data?.[0].temperatureLow}
+            />
+          </div>
+        </div>
+      </div>
+      
+        
+        
     </div>
   );
 }
