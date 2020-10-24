@@ -1,15 +1,22 @@
 import React from 'react';
 import * as styles from './CurrentLocationData.module.scss';
 import WeatherStatusIcon from '../WeatherStatusIcon/WeatherStatusIcon';
+import CurrentLocationTemp from './CurrentLocationTemp/CurrentLocationTemp';
 
 interface CurrentLocationDataProps {
     city: string;
-    country: string;
-    summary: string;
+    country?: string;
+    currentTemp: number,
     icon: string;
+    currSummary: string;
 }
 
-const CurrentLocationData: React.FC<CurrentLocationDataProps> = ({city, country, summary, icon}) => {
+const CurrentLocationData: React.FC<CurrentLocationDataProps> = ({
+    city,
+    country,
+    icon,
+    currSummary,
+}) => {
 
     const date = new Date();
 
@@ -17,12 +24,10 @@ const CurrentLocationData: React.FC<CurrentLocationDataProps> = ({city, country,
 
     return (
         <section className={styles.CurrentLocationData}>
-            <div className="container">
-                <h2 className="font-bold mb-1">{city}</h2>
-                <time className="font-bold">{days[date.getDay()]} {date.getDate()}, {date.getFullYear()}</time>
-                <WeatherStatusIcon className={['mt-4']} icon={icon} summary={summary}/>
-                <p className="my-1 font-bold">{summary}</p>
-            </div>
+            <h2 className="font-bold my-1">{city}</h2>
+            <time className="font-bold mb-2">{days[date.getDay()]} {date.getDate()}, {date.getFullYear()}</time>
+            <WeatherStatusIcon className={['mt-3 mb-1']} icon={icon} summary={currSummary}/>
+            <p className="my-0 font-bold">{currSummary}</p>
         </section>
     )
 
