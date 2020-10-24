@@ -3,7 +3,7 @@ import './App.scss';
 import AppHeader from './components/AppHeader/AppHeader';
 import CurrentLocationData from './components/CurrentLocationData/CurrentLocationData';
 import usePosition from './utils/usePositionHook';
-import {GeoLocationAPIResponse, WeatherAPIResponse} from './utils/Interfaces'
+import {GeoLocationAPIResponse, WeatherAPIResponse, Currently} from './utils/Interfaces'
 
 import { get } from './utils/Axios';
 
@@ -15,7 +15,7 @@ const App = () => {
   const [country, setCountry] = useState("");
 
 
-  const [currWeather, setCurrWeather] = useState({});
+  const [currWeather, setCurrWeather] = useState({} as Currently);
 
   const [dailyWeather, setDailyWeather] = useState({});
   const [hourlyWeather, setHourlyWeather] = useState({});
@@ -29,7 +29,6 @@ const App = () => {
 
   const getWeather = async () => {
     const weatherData = await get<WeatherAPIResponse>(`https://api.darksky.net/forecast/a177f8481c31fa96c3f95ad4f4f84610/${latitude},${longitude}`);
-    console.log(weatherData);
 
     setCurrWeather(weatherData.currently);
     setDailyWeather(weatherData.daily);
@@ -47,7 +46,7 @@ const App = () => {
   return (
     <div className="App">
       <AppHeader/>
-      <CurrentLocationData city={city} country={country} status='status' />
+      <CurrentLocationData city={city} country={country} icon={currWeather.icon} summary={currWeather.summary} />
     </div>
   );
 }
