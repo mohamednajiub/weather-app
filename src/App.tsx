@@ -3,7 +3,7 @@ import './App.scss';
 import AppHeader from './components/AppHeader/AppHeader';
 import CurrentLocationData from './components/CurrentLocationData/CurrentLocationData';
 import usePosition from './utils/usePositionHook';
-import {GeoLocationAPIResponse} from './utils/Interfaces'
+import {GeoLocationAPIResponse, WeatherAPIResponse} from './utils/Interfaces'
 
 import { get } from './utils/Axios';
 
@@ -15,6 +15,12 @@ const App = () => {
   const [country, setCountry] = useState("");
 
 
+  const [currWeather, setCurrWeather] = useState({});
+
+  const [dailyWeather, setDailyWeather] = useState({});
+  const [hourlyWeather, setHourlyWeather] = useState({});
+
+
   const getLocation = async () => {
     const locationData = await get<GeoLocationAPIResponse>('https://geolocation-db.com/json/7733a990-ebd4-11ea-b9a6-2955706ddbf3/');
     setCity(locationData.city);
@@ -22,8 +28,12 @@ const App = () => {
   }
 
   const getWeather = async () => {
-    const weatherData = await get<GeoLocationAPIResponse>(`https://api.darksky.net/forecast/a177f8481c31fa96c3f95ad4f4f84610/${latitude},${longitude}`);
+    const weatherData = await get<WeatherAPIResponse>(`https://api.darksky.net/forecast/a177f8481c31fa96c3f95ad4f4f84610/${latitude},${longitude}`);
     console.log(weatherData);
+
+    setCurrWeather(weatherData.currently);
+    setDailyWeather(weatherData.daily);
+    setHourlyWeather(weatherData.hourly);
   }
 
   useEffect(()=>{
