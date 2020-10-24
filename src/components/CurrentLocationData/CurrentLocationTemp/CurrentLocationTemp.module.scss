@@ -1,0 +1,22 @@
+@import '../../../Global/calculateRem';
+
+.CurrentLocationTemp {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	color: #fff;
+	.CurrentTemp {
+		font-size: calculateRem(144);
+		sup {
+			font-size: calculateRem(100);
+		}
+	}
+	.TodayTemp {
+		font-weight: 400;
+		font-size: calculateRem(48);
+	}
+	.TodaySummary {
+		font-weight: 600;
+		font-size: calculateRem(24);
+	}
+}
