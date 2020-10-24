@@ -7,6 +7,7 @@ import usePosition from './utils/usePositionHook';
 import {GeoLocationAPIResponse, WeatherAPIResponse, Currently, Daily} from './utils/Interfaces'
 
 import { get } from './utils/Axios';
+import Tabs from './components/Tabs/Tabs';
 
 const App = () => {
 
@@ -68,6 +69,11 @@ const App = () => {
             />
           </div>
         </div>
+      </div>
+
+
+      <div className="container">
+        <Tabs />
       </div>
       
         
