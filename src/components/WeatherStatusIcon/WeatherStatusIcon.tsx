@@ -14,9 +14,10 @@ import Snow from '../../images/snow.png';
 interface WeatherStatusIconProps {
     icon: string;
     summary: string;
+    className: string[];
 }
 
-const WeatherStatusIcon: React.FC<WeatherStatusIconProps>  = ({icon, summary}) => {
+const WeatherStatusIcon: React.FC<WeatherStatusIconProps>  = ({icon, summary, className}) => {
 
     const weatherIcons: any = {
         "clear-day": Sunny,
@@ -31,7 +32,7 @@ const WeatherStatusIcon: React.FC<WeatherStatusIconProps>  = ({icon, summary}) =
     };
         
     return (
-        <div>
+        <div className={[...className].join(' ')}>
             <img src={weatherIcons[`${icon}`]} alt={summary} />
         </div>
     );

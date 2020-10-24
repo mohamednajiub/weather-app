@@ -1,0 +1,22 @@
+@import '../../Global/grid';
+
+// Function for converting a px based font-size to rem.
+@function calculateRem($size) {
+	@return $size / 16 * 1rem;
+}
+
+.CurrentLocationData {
+	color: #fff;
+	h2 {
+		font-size: calculateRem(24);
+		@media screen and (min-width: map-get($map: $grid-breakpoints, $key: md)) {
+			font-size: calculateRem(64);
+		}
+	}
+	time {
+		font-size: calculateRem(20);
+	}
+	p {
+		font-size: calculateRem(30);
+	}
+}

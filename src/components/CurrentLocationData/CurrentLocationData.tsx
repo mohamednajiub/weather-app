@@ -18,10 +18,10 @@ const CurrentLocationData: React.FC<CurrentLocationDataProps> = ({city, country,
     return (
         <section className={styles.CurrentLocationData}>
             <div className="container">
-                <h2>{city}</h2>
-                <span>{days[date.getDay()]} {date.getDate()}, {date.getFullYear()}</span>
-                <WeatherStatusIcon icon={icon} summary={summary}/>
-                <p>{summary}</p>
+                <h2 className="font-bold mb-1">{city}</h2>
+                <time className="font-bold">{days[date.getDay()]} {date.getDate()}, {date.getFullYear()}</time>
+                <WeatherStatusIcon className={['mt-4']} icon={icon} summary={summary}/>
+                <p className="my-1 font-bold">{summary}</p>
             </div>
         </section>
     )
