@@ -4,13 +4,7 @@ export interface GeoLocationAPIResponse {
 }
 
 export interface WeatherAPIResponse {
-    currently: {
-        apparentTemperature: number,
-        temperature: number,
-        icon: string,
-        time: number,
-        summary: string
-    },
+    currently: Currently,
 
     daily: {
         data: {
@@ -40,4 +34,12 @@ export interface WeatherAPIResponse {
             summary: string,
         };
     }
+}
+
+export interface Currently {
+    apparentTemperature: number,
+    temperature: number,
+    icon: string,
+    time: number,
+    summary: string
 }
