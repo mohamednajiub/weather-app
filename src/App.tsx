@@ -49,7 +49,9 @@ const App = () => {
   })
 
   useEffect(()=>{
-    getWeather();
+    if(latitude && longitude){
+      getWeather();
+    }
   }, [latitude, longitude])
 
 
