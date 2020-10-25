@@ -3,7 +3,7 @@ import * as styles from './Tabs.module.scss';
 
 import TabButton from './TabButton/TabButton';
 
-import {Daily, Currently, HourlyData} from '../../utils/Interfaces'
+import {Daily, HourlyData} from '../../utils/Interfaces'
 import TabBody from './TabBody/TabBody';
 import WeatherInfo from '../WeatherInfo/WeatherInfo';
 import FahrenheitToCelsius from '../../utils/FahrenheitToCelsius';
@@ -30,7 +30,7 @@ const Tabs: React.FC<TabsProps> = ({hourlyWeather, dailyWeather}) => {
     let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
     return (
-        <section>
+        <section className={styles.Tabs}>
             <header className={styles.TabHeader}>
                 {
                     tabs.map(tab => (

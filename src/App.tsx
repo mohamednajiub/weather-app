@@ -65,8 +65,8 @@ const App = () => {
       <AppHeader changeMeasure={changeMeasure}/>
 
       <div className="container">
-        <div className="row align-items-start">
-          <div className="col-6">
+        <div className="row align-items-center align-items-md-start">
+          <div className="col-12 col-md-6">
             <CurrentLocationData
               city={city}
               country={country}
@@ -74,7 +74,7 @@ const App = () => {
               currSummary={currWeather.summary}
             />
           </div>
-          <div className="col-6">
+          <div className="col-12 col-md-6">
             <CurrentLocationTemp 
               dailySummary={dailyWeather.data?.[0].summary}
               currentTemp={tempMeasure === 'c'? FahrenheitToCelsius(currWeather.temperature):currWeather.temperature}
