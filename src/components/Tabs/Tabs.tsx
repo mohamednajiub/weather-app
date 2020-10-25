@@ -3,7 +3,16 @@ import * as styles from './Tabs.module.scss';
 
 import TabButton from './TabButton/TabButton';
 
-const Tabs = () => {
+import {Daily, Currently, HourlyData} from '../../utils/Interfaces'
+import TabBody from './TabBody/TabBody';
+import WeatherInfo from '../WeatherInfo/WeatherInfo';
+
+interface TabsProps{
+    hourlyWeather: HourlyData,
+    dailyWeather: Daily
+}
+
+const Tabs: React.FC<TabsProps> = ({hourlyWeather, dailyWeather}) => {
 
     const [activeTab, setActiveTab] = useState('hourly');
 
@@ -17,12 +26,15 @@ const Tabs = () => {
         },
     ]
 
+    let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
     return (
         <section>
-            <div >
+            <header className={styles.TabHeader}>
                 {
                     tabs.map(tab => (
                         <TabButton
+                            key={tab.value}
                             value={tab.value}
                             onClick={setActiveTab}
                             active={activeTab === tab.value ? true:false}
@@ -31,12 +43,65 @@ const Tabs = () => {
                         />
                     ))
                 }
-            </div>
-            
+            </header>
+
             {
                 activeTab === 'hourly'? 
-                <h1>Hourly</h1>:
-                <h1>Daily</h1>
+                    <TabBody className={[styles.scrollable, 'd-flex']}>
+                        {
+                            hourlyWeather.data?
+                                hourlyWeather.data.slice(0, 23).map(hour => {
+                                    let time = new Date(hour.time * 1000);
+                                    let displayedTime;
+                                    let hours = time.getHours().toString();
+                                    let minutes = time.getMinutes().toString();
+
+                                    if (hours === new Date().getHours().toString()) {
+                                        displayedTime = 'now'
+                                    } else {
+                                        displayedTime = `${hours.padStart(2, "0")}:${minutes.padStart(2, "0")}`
+                                    }
+                                    return(
+                                        <WeatherInfo
+                                            key={displayedTime}
+                                            time={displayedTime}
+                                            summary={hour.summary}
+                                            icon={hour.icon}
+                                            hourTemp={hour.temperature}
+                                        />
+                                    )
+                                })
+                            :null
+                        }
+                    </TabBody>
+                :
+                    <TabBody className={[styles.scrollable, 'd-flex']}>
+                        {
+                            dailyWeather.data?
+                                dailyWeather.data.map(day => {
+                                    let time = new Date(day.time * 1000);
+
+                                    let displayedDay = time.getDay();
+
+                                    let date = time.getDate();
+
+                                    
+                                    let displayedTime = `${days[displayedDay]}, ${date}`
+
+                                    return (
+                                        <WeatherInfo
+                                            key={day.time}
+                                            date={displayedTime}
+                                            summary={day.summary}
+                                            icon={day.icon}
+                                            dayTempHigh={day.temperatureHigh}
+                                            dayTempLow={day.temperatureLow}
+                                        />
+                                    )
+                                })
+                            :null
+                        }
+                    </TabBody>
             }
 
         </section>
