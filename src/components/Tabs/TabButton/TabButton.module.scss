@@ -1,0 +1,15 @@
+.TabButton {
+	background-color: transparent;
+	outline: 0;
+	border: 0;
+	color: rgba($color: #fff, $alpha: 0.75);
+	padding: 0.5rem 0 0.6rem;
+	cursor: pointer;
+	&:not(:first-child) {
+		margin: 0 1rem;
+	}
+	&.active {
+		color: #fff;
+		border-bottom: 2px solid #fff;
+	}
+}

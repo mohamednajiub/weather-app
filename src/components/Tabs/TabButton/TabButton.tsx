@@ -15,7 +15,7 @@ const TabButton: React.FC<TabButtonProps> = ({label, value, className, active, o
         <button
             type="button"
             onClick={()=>onClick(value)}
-            className={[...className, styles.TabButton, active? 'active': null].join(' ')}
+            className={[...className, styles.TabButton, active? styles.active : null].join(' ')}
         >
             {label}
         </button>
