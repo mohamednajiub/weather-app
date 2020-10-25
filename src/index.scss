@@ -19,3 +19,19 @@ body {
 .font-regular {
 	font-weight: 400;
 }
+
+/* width */
+::-webkit-scrollbar {
+	width: 5px;
+	height: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: rgba($color: #fff, $alpha: 0.5);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #fff;
+}
