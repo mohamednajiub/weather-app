@@ -4,7 +4,7 @@ import AppHeader from './components/AppHeader/AppHeader';
 import CurrentLocationData from './components/CurrentLocationData/CurrentLocationData';
 import CurrentLocationTemp from './components/CurrentLocationData/CurrentLocationTemp/CurrentLocationTemp';
 import usePosition from './utils/usePositionHook';
-import {GeoLocationAPIResponse, WeatherAPIResponse, Currently, Daily} from './utils/Interfaces'
+import {GeoLocationAPIResponse, WeatherAPIResponse, Currently, Daily, HourlyData} from './utils/Interfaces'
 
 import { get } from './utils/Axios';
 import Tabs from './components/Tabs/Tabs';
@@ -20,7 +20,7 @@ const App = () => {
   const [currWeather, setCurrWeather] = useState({} as Currently);
 
   const [dailyWeather, setDailyWeather] = useState({} as Daily);
-  const [hourlyWeather, setHourlyWeather] = useState({});
+  const [hourlyWeather, setHourlyWeather] = useState({} as HourlyData);
 
 
   const getLocation = async () => {
@@ -73,11 +73,9 @@ const App = () => {
 
 
       <div className="container">
-        <Tabs />
+        <Tabs dailyWeather={dailyWeather} hourlyWeather={hourlyWeather}/>
       </div>
       
-        
-        
     </div>
   );
 }
