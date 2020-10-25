@@ -29,7 +29,6 @@ const App = () => {
 
   const getLocation = async () => {
     const locationData = await get<GeoLocationAPIResponse>('https://geolocation-db.com/json/7733a990-ebd4-11ea-b9a6-2955706ddbf3/');
-    console.log(locationData)
     setCity(locationData.city);
     setCountry(locationData.country_name);
   }
@@ -44,14 +43,13 @@ const App = () => {
 
   useEffect(()=>{
     getLocation();
-    if(latitude && longitude){
-      getWeather();
-    }
-
     if(!localStorage.getItem('tempMeasure')){
       localStorage.setItem('tempMeasure', 'f')  
     }
-    
+  })
+
+  useEffect(()=>{
+    getWeather();
   }, [latitude, longitude])
 
 
