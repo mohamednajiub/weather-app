@@ -8,15 +8,7 @@ export interface WeatherAPIResponse {
 
     daily: Daily,
 
-    hourly: {
-        [index: number]: {
-            time: string,
-            apparentTemperature: number,
-            temperature: number,
-            icon: string,
-            summary: string,
-        };
-    }
+    hourly: HourlyData
 }
 
 export interface Currently {
@@ -44,4 +36,11 @@ export interface DailyDataObjects {
     temperatureMin: number,
     icon: string,
     summary: string,
+    time: number
+}
+
+export interface HourlyData {
+    data: Currently[],
+    icon: string,
+    summary: string
 }
