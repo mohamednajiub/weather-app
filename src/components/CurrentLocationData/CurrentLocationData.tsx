@@ -6,7 +6,6 @@ import CurrentLocationTemp from './CurrentLocationTemp/CurrentLocationTemp';
 interface CurrentLocationDataProps {
     city: string;
     country?: string;
-    currentTemp: number,
     icon: string;
     currSummary: string;
 }

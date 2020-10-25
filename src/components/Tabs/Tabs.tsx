@@ -6,6 +6,7 @@ import TabButton from './TabButton/TabButton';
 import {Daily, Currently, HourlyData} from '../../utils/Interfaces'
 import TabBody from './TabBody/TabBody';
 import WeatherInfo from '../WeatherInfo/WeatherInfo';
+import FahrenheitToCelsius from '../../utils/FahrenheitToCelsius';
 
 interface TabsProps{
     hourlyWeather: HourlyData,
@@ -67,7 +68,7 @@ const Tabs: React.FC<TabsProps> = ({hourlyWeather, dailyWeather}) => {
                                             time={displayedTime}
                                             summary={hour.summary}
                                             icon={hour.icon}
-                                            hourTemp={hour.temperature}
+                                            hourTemp={localStorage.getItem('tempMeasure') === 'c'? FahrenheitToCelsius(hour.temperature):hour.temperature}
                                         />
                                     )
                                 })
@@ -94,8 +95,8 @@ const Tabs: React.FC<TabsProps> = ({hourlyWeather, dailyWeather}) => {
                                             date={displayedTime}
                                             summary={day.summary}
                                             icon={day.icon}
-                                            dayTempHigh={day.temperatureHigh}
-                                            dayTempLow={day.temperatureLow}
+                                            dayTempHigh={localStorage.getItem('tempMeasure') === 'c'? FahrenheitToCelsius(day.temperatureHigh) : day.temperatureHigh}
+                                            dayTempLow={localStorage.getItem('tempMeasure') === 'c'? FahrenheitToCelsius(day.temperatureLow) : day.temperatureLow }
                                         />
                                     )
                                 })

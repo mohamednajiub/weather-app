@@ -1,7 +1,13 @@
 import React from 'react';
 import * as styles from './AppHeader.module.scss';
 
-const AppHeader = () => {
+interface AppHeaderProps{
+    changeMeasure(measure: string): void
+}
+
+const AppHeader: React.FC<AppHeaderProps> = ({changeMeasure}) => {
+
+    let activeTempMeasure = localStorage.getItem('tempMeasure')
     return (
         <header className={styles.AppHeader}>
             <div className="container">
@@ -11,8 +17,20 @@ const AppHeader = () => {
                     </div>
                     
                     <div className="col-4 col-md-6 measure-units d-flex justify-content-end">
-                        <button type="button">C</button>
-                        <button type="button" className={styles.active}>F</button>
+                        <button
+                            type="button"
+                            onClick={()=>changeMeasure('c')}
+                            className={[
+                                activeTempMeasure === 'c' ? styles.active: null
+                            ].join(' ')}
+                        >C</button>
+                        <button
+                            type="button"
+                            onClick={()=>changeMeasure('f')}
+                            className={[
+                                activeTempMeasure === 'f' ? styles.active: null
+                            ].join(' ')}
+                        >F</button>
                     </div>
                 </div>
             </div>

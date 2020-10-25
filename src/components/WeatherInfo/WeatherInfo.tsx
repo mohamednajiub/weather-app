@@ -19,11 +19,11 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({time, date, icon, hourTemp, da
             <WeatherStatusIcon icon={icon} summary={summary} className={[]}/>
             {
                 hourTemp ?
-                    <p className="my-2">{hourTemp}<sup>°</sup></p>
+                    <p className="my-2">{Math.round(hourTemp)}<sup>°</sup></p>
                 :
                     <p className={["my-2", styles.DayTemp].join(' ')}>
-                        {dayTempHigh}<sup>°</sup>
-                        <span>{dayTempLow}<sup>°</sup></span>
+                        {dayTempHigh?Math.round(dayTempHigh):''}<sup>°</sup>
+                        <span>{dayTempLow?Math.round(dayTempLow):''}<sup>°</sup></span>
                     </p>
             }
         </div>
