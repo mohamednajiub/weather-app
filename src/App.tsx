@@ -34,7 +34,7 @@ const App = () => {
   }
 
   const getWeather = async () => {
-    const weatherData = await get<WeatherAPIResponse>(`https://api.darksky.net/forecast/a177f8481c31fa96c3f95ad4f4f84610/${latitude},${longitude}`);
+    const weatherData = await get<WeatherAPIResponse>(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/a177f8481c31fa96c3f95ad4f4f84610/${latitude},${longitude}`);
 
     setCurrWeather(weatherData.currently);
     setDailyWeather(weatherData.daily);
