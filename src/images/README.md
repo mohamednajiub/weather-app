@@ -1,7 +1,8 @@
 # InstaWeather
-![Image of InstaWeather](./screenshot.png)
-InstaWeather is a Weather application that brings to you your current location Temprature in Fahrenheit and Celsius based in your preference.
 
+![Image of InstaWeather](https://github.com/mohamednajiub/weather-app/blob/master/src/images/screenshot.PNG?raw=true)
+
+InstaWeather is a Weather application that brings to you your current location Temprature in Fahrenheit and Celsius based in your preference.
 
 ## Live Preview:
 
